@@ -32,7 +32,7 @@ val DarkGrey300 = Color(0xFF1E1E1E)
 val DarkGrey350 = Color(0xFF181818)
 val DarkGrey400 = Color(0xFF121212)
 
-val Blue = Color(0xFF0070EF)
+val Blue = Color(0xFF06378A)
 
 val Red = Color(0xFFD1404D)
 val Red100 = Color(0xFFE08088)
