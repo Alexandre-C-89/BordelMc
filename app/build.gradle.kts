@@ -88,6 +88,18 @@ dependencies {
     // Navigation compose
     implementation ("androidx.navigation:navigation-compose:2.7.5")
 
+    //Exoplayer
+    implementation ("com.google.android.exoplayer:exoplayer:2.19.1")
+
+    //Accompanist
+    implementation ("com.google.accompanist:accompanist-insets:0.22.0-rc")
+    implementation ("com.google.accompanist:accompanist-pager:0.32.0")
+    implementation ("androidx.glance:glance-appwidget:1.0.0")
+
+    // Material
+    implementation ("com.google.android.material:material:1.10.0")
+    implementation ("androidx.compose.material:material:1.5.4")
+
 }
 
 // Allow references to generated code

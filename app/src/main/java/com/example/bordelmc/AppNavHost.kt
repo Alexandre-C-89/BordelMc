@@ -19,7 +19,7 @@ fun AppNavHost(
         startDestination = BottomNavItem.Home.screen_route
     ) {
         composable(BottomNavItem.Home.screen_route) {
-            HomeRoute()
+            HomeRoute(navController = navController)
         }
         composable(BottomNavItem.Quote.screen_route) {
             QuoteRoute()

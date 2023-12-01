@@ -20,6 +20,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.bordelmc.TodoViewModel
 import com.example.bordelmc.ui.component.AppBar
 import com.example.bordelmc.ui.component.AppBottomBar
@@ -27,23 +28,27 @@ import com.example.bordelmc.ui.component.AppScaffold
 
 @Composable
 fun HomeRoute(
-
+    navController = navController
 ) {
-    val vm = TodoViewModel()
-    HomeScreen(vm)
+    val todoViewModel = TodoViewModel()
+    HomeScreen(
+        todoViewModel,
+        navController = navController
+    )
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
-    vm: TodoViewModel
+    vm: TodoViewModel,
+    navController = navController
 ) {
     LaunchedEffect(Unit, block = {
         vm.getTodoList()
     })
     AppScaffold(
         topBar = { AppBar() },
-        bottomBar = { AppBottomBar() }
+        bottomBar = { AppBottomBar(navController = NavController(navController)) }
     ) {
         if (vm.errorMessage.isEmpty()) {
             Column(modifier = Modifier.padding(16.dp)) {
