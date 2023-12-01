@@ -10,6 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.bordelmc.ui.theme.Blue
+import com.example.bordelmc.ui.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
@@ -22,7 +23,7 @@ fun AppScaffold(
     Scaffold(
         topBar = topBar,
         modifier = modifier,
-        containerColor = Blue,
+        containerColor = White,
         bottomBar = bottomBar
     ){ innerPadding ->
         Box(
