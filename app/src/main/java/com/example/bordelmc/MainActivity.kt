@@ -34,7 +34,6 @@ import com.example.bordelmc.ui.theme.BordelMcTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val vm = TodoViewModel()
         super.onCreate(savedInstanceState)
         setContent {
             BordelMcTheme {
@@ -43,66 +42,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    //TodoView(vm)
                     HomeRoute()
                 }
             }
         }
     }
-}
-
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TodoView(vm: TodoViewModel) {
-
-    LaunchedEffect(Unit, block = {
-        vm.getTodoList()
-    })
-
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Row {
-                        Text("Todos")
-                    }
-                })
-        },
-        content = {
-            if (vm.errorMessage.isEmpty()) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    LazyColumn(modifier = Modifier.fillMaxHeight()) {
-                        items(vm.todoList) { todo ->
-                            Column {
-                                Row(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(16.dp),
-                                    horizontalArrangement = Arrangement.SpaceBetween
-                                ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(0.dp, 0.dp, 16.dp, 0.dp)
-                                    ) {
-                                        Text(
-                                            todo.title,
-                                            maxLines = 1,
-                                            overflow = TextOverflow.Ellipsis
-                                        )
-                                    }
-                                    Spacer(modifier = Modifier.width(16.dp))
-                                    Checkbox(checked = todo.completed, onCheckedChange = null)
-                                }
-                                Divider()
-                            }
-                        }
-                    }
-                }
-            } else {
-                Text(vm.errorMessage)
-            }
-        }
-    )
 }
