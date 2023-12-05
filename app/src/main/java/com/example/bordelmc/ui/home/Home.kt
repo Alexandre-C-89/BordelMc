@@ -1,88 +1,129 @@
 package com.example.bordelmc.ui.home
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Checkbox
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import com.example.bordelmc.TodoViewModel
-import com.example.bordelmc.ui.component.AppBar
-import com.example.bordelmc.ui.component.AppBottomBar
-import com.example.bordelmc.ui.component.AppScaffold
+import androidx.compose.ui.unit.sp
+import com.example.bordelmc.ui.home.model.HomeUiState
 
 @Composable
 fun HomeRoute(
-    navController = navController
+    //navController = navController
+    //homeViewModel: HomeViewModel = hiltViewModel(LocalContext.current as ComponentActivity),
 ) {
-    val todoViewModel = TodoViewModel()
-    HomeScreen(
-        todoViewModel,
-        navController = navController
-    )
+    //val uiState: HomeUiState by viewModel.uiState.collectAsStateWithLifecycle()
+    /**HomeScreen(
+        //navController = navController
+        //onGetQuotes = { viewModel.getQuotes() },
+        //uiState = viewModel.uiState.value
+    )*/
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
-    vm: TodoViewModel,
-    navController = navController
+    //navController = navController
+    onGetQuotes : ()-> Unit,
+    uiState: HomeUiState
 ) {
-    LaunchedEffect(Unit, block = {
-        vm.getTodoList()
-    })
-    AppScaffold(
-        topBar = { AppBar() },
-        bottomBar = { AppBottomBar(navController = NavController(navController)) }
+    Scaffold(
+        topBar = {
+            TopAppBar (
+                title = {
+                    Text(text = "QuotesApp",
+                        style = TextStyle(
+                            fontWeight = FontWeight.ExtraBold,
+                            fontSize = 24.sp)
+                    )
+                },
+                actions = {
+                    IconButton(onClick = onGetQuotes) {
+                        Icon(imageVector = Icons.Filled.Refresh, contentDescription = null)
+                    }
+                }
+            )
+        }
     ) {
-        if (vm.errorMessage.isEmpty()) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                LazyColumn(modifier = Modifier.fillMaxHeight()) {
-                    items(vm.todoList) { todo ->
-                        Column {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(16.dp),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(0.dp, 0.dp, 16.dp, 0.dp)
-                                ) {
-                                    Text(
-                                        todo.title,
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis
-                                    )
-                                }
-                                Spacer(modifier = Modifier.width(16.dp))
-                                Checkbox(checked = todo.completed, onCheckedChange = null)
-                            }
+        Box(modifier = Modifier
+            .padding(it)
+            .fillMaxSize()){
+            if(uiState.isLoading){
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }else if(!uiState.error.isNullOrEmpty()){
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .align(Alignment.Center),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Icon(imageVector = Icons.Filled.Warning,
+                        contentDescription = null,
+                        tint = Color.Red
+                    )
+                    Text(text = uiState.error, textAlign = TextAlign.Center)
+                }
+            }else{
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(16.dp)
+                ){
+                    items(uiState.quotes!!){ quote->
+                        Column(
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                modifier = Modifier.fillMaxWidth(),
+                                text = quote.author,
+                                style = TextStyle(
+                                    fontStyle = FontStyle.Italic,
+                                    fontSize = MaterialTheme.typography.labelSmall.fontSize,
+                                    textAlign = TextAlign.End
+                                )
+                            )
+                            Text(
+                                modifier = Modifier.fillMaxWidth(),
+                                text = quote.quote
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
                             Divider()
                         }
                     }
+
                 }
             }
-        } else {
-            Text(vm.errorMessage)
         }
-
     }
 }

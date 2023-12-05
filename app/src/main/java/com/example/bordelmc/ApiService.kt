@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 
-data class Todo(
+/**data class Todo(
     var userId: Int,
     var id: Int,
     var title: String,
@@ -13,6 +13,7 @@ data class Todo(
 )
 
 const val BASE_URL = "https://jsonplaceholder.typicode.com/"
+
 
 interface APIService {
     @GET("todos")
@@ -30,4 +31,4 @@ interface APIService {
             return apiService!!
         }
     }
-}
+}*/

@@ -1,23 +1,6 @@
 package com.example.bordelmc.ui.component
 
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.bordelmc.BottomNavItem
-import com.example.bordelmc.R
-
-@Composable
+/**@Composable
 fun AppBottomBar(
     navController: NavController
 ) {
@@ -56,4 +39,4 @@ fun AppBottomBar(
             )
         }
     }
-}
+}*/
