@@ -33,21 +33,27 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bordelmc.UiState
+import com.example.bordelmc.designSystem.component.bar.AppBottomBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
-    onGetQuotes : ()-> Unit,
+    onGetQuotes: () -> Unit,
+    navToHomeScreen: () -> Unit,
+    navToProfileScreen: () -> Unit,
+    navToSearchScreen: () -> Unit,
     uiState: UiState
-){
+) {
     Scaffold(
         topBar = {
-            TopAppBar (
+            TopAppBar(
                 title = {
-                    Text(text = "QuotesApp",
+                    Text(
+                        text = "QuotesApp",
                         style = TextStyle(
                             fontWeight = FontWeight.ExtraBold,
-                            fontSize = 24.sp)
+                            fontSize = 24.sp
+                        )
                     )
                 },
                 actions = {
@@ -56,34 +62,44 @@ fun SearchScreen(
                     }
                 }
             )
+        },
+        bottomBar = {
+            AppBottomBar(
+                navToHomeScreen = navToHomeScreen,
+                navToProfileScreen = navToProfileScreen,
+                navToSearchScreen = navToSearchScreen
+            )
         }
     ) {
-        Box(modifier = Modifier
-            .padding(it)
-            .fillMaxSize()){
-            if(uiState.isLoading){
+        Box(
+            modifier = Modifier
+                .padding(it)
+                .fillMaxSize()
+        ) {
+            if (uiState.isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier.align(Alignment.Center)
                 )
-            }else if(!uiState.error.isNullOrEmpty()){
+            } else if (!uiState.error.isNullOrEmpty()) {
                 Column(
                     modifier = Modifier
                         .padding(16.dp)
                         .align(Alignment.Center),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Icon(imageVector = Icons.Filled.Warning,
+                    Icon(
+                        imageVector = Icons.Filled.Warning,
                         contentDescription = null,
                         tint = Color.Red
                     )
                     Text(text = uiState.error, textAlign = TextAlign.Center)
                 }
-            }else{
+            } else {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(16.dp)
-                ){
-                    items(uiState.quotes!!){ quote->
+                ) {
+                    items(uiState.quotes!!) { quote ->
                         Column(
                             modifier = Modifier.fillMaxWidth(),
                         ) {

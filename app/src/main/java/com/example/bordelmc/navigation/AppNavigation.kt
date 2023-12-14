@@ -3,11 +3,12 @@ package com.example.bordelmc.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.example.bordelmc.UiState
 import com.example.bordelmc.home.HomeScreen
 import com.example.bordelmc.profile.ProfileScreen
 import com.example.bordelmc.search.SearchScreen
 
-/**const val home = "home"
+const val home = "home"
 
 fun NavGraphBuilder.home(
     navToHomeScreen: () -> Unit,
@@ -16,9 +17,9 @@ fun NavGraphBuilder.home(
 ) {
     composable(home) {
         HomeScreen(
-            navToHomeScreen = {},
-            navToSearchScreen = {},
-            navToProfileScreen = {}
+            navToHomeScreen = navToHomeScreen,
+            navToSearchScreen = navToSearchScreen,
+            navToProfileScreen = navToProfileScreen
         )
     }
 }
@@ -32,13 +33,17 @@ const val search = "search"
 fun NavGraphBuilder.search(
     navToHomeScreen: () -> Unit,
     navToSearchScreen: () -> Unit,
-    navToProfileScreen: () -> Unit
+    navToProfileScreen: () -> Unit,
+    onGetQuotes : ()-> Unit,
+    uiState: UiState
 ) {
     composable(home) {
         SearchScreen(
-            navToHomeScreen = {},
-            navToProfileScreen = {},
-            navToSearchScreen = {}
+            navToHomeScreen = navToHomeScreen,
+            navToProfileScreen = navToProfileScreen,
+            navToSearchScreen = navToSearchScreen,
+            onGetQuotes = onGetQuotes,
+            uiState = uiState
         )
     }
 }
@@ -56,13 +61,13 @@ fun NavGraphBuilder.profile(
 ) {
     composable(profile) {
         ProfileScreen(
-            navToHomeScreen = {},
-            navToSearchScreen = {},
-            navToProfileScreen = {}
+            navToHomeScreen = navToHomeScreen,
+            navToSearchScreen = navToSearchScreen,
+            navToProfileScreen = navToProfileScreen
         )
     }
 }
 
 fun NavController.navToProfile() {
     navigate(profile)
-}*/
+}
