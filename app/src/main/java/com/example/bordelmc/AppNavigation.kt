@@ -13,6 +13,7 @@ fun NavGraphBuilder.home(
 ) {
     composable(home) {
         HomeScreen(
+            navToHomeScreen = {},
             navToSearchScreen = {},
             navToProfileScreen = {}
         )
