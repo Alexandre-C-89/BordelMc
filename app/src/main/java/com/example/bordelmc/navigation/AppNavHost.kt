@@ -14,9 +14,9 @@ fun AppNavHost(
         navController = navController,
         startDestination = Screen.Home.route
     ) {
-        home(navToSearchScreen = { navController.navigate("search") }, navToProfileScreen = {navController.navigate("profile")}, navToHomeScreen = {navController.navigate("home")})
+        /**home(navToSearchScreen = { navController.navigate("search") }, navToProfileScreen = {navController.navigate("profile")}, navToHomeScreen = {navController.navigate("home")})
         search(navToHomeScreen = { navController.navigate("home") }, navToProfileScreen = {navController.navigate("profile")}, navToSearchScreen = {navController.navigate("search")})
         profile(navToHomeScreen = { navController.navigate("home") }, navToSearchScreen = {navController.navigate("search")}, navToProfileScreen = {navController.navigate("profile")})
-        // Add more composables for other screens
+        // Add more composables for other screens*/
     }
 }

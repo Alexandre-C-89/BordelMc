@@ -7,7 +7,7 @@ import com.example.bordelmc.home.HomeScreen
 import com.example.bordelmc.profile.ProfileScreen
 import com.example.bordelmc.search.SearchScreen
 
-const val home = "home"
+/**const val home = "home"
 
 fun NavGraphBuilder.home(
     navToHomeScreen: () -> Unit,
@@ -65,4 +65,4 @@ fun NavGraphBuilder.profile(
 
 fun NavController.navToProfile() {
     navigate(profile)
-}
+}*/
