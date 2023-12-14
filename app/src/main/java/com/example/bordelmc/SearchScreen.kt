@@ -12,12 +12,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(
+fun SearchScreen(
     navToHomeScreen: () -> Unit,
     navToProfileScreen: () -> Unit,
     navToSearchScreen: () -> Unit
@@ -27,8 +26,8 @@ fun HomeScreen(
         bottomBar = {
             AppBottomBar(
                 navToHomeScreen = navToHomeScreen,
-                navToSearchScreen = navToSearchScreen,
-                navToProfileScreen = navToProfileScreen
+                navToProfileScreen = navToProfileScreen,
+                navToSearchScreen = navToSearchScreen
             )
         }
     ) {
@@ -41,8 +40,7 @@ fun HomeScreen(
                 modifier = Modifier
                     .fillMaxSize()
             ) {
-                Text(text = "Bienvenue sur BordelMc !")
-                Text(text = "Ceci est une application où j'expérimente les bases de Compose tout comme les concepts un peu plus avancé !J'y apporte au fur et à mesure de nouvelles mise à jours que ce soit pour du contenu ou pour améliorer ce qui est en place. Au plaisir de vous voir utiliser l'app !  Alexandre")
+                Text(text = "SearchScreen !")
                 Spacer(modifier = Modifier.height(8.dp))
                 CardItem()
             }
