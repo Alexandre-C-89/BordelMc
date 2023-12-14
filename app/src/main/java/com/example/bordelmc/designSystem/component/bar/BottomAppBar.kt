@@ -1,4 +1,4 @@
-package com.example.bordelmc
+package com.example.bordelmc.designSystem.component.bar
 
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.BottomAppBar
@@ -9,9 +9,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import com.example.bordelmc.ui.theme.LightBlue
+import com.example.bordelmc.designSystem.theme.LightBlue
 
 @Composable
 fun AppBottomBar(

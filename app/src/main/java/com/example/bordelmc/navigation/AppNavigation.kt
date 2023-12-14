@@ -1,8 +1,11 @@
-package com.example.bordelmc
+package com.example.bordelmc.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.example.bordelmc.home.HomeScreen
+import com.example.bordelmc.profile.ProfileScreen
+import com.example.bordelmc.search.SearchScreen
 
 const val home = "home"
 

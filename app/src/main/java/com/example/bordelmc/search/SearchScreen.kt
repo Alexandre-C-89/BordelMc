@@ -1,4 +1,4 @@
-package com.example.bordelmc
+package com.example.bordelmc.search
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
@@ -12,7 +12,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
+import com.example.bordelmc.designSystem.component.card.CardItem
+import com.example.bordelmc.designSystem.component.bar.AppBar
+import com.example.bordelmc.designSystem.component.bar.AppBottomBar
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable

@@ -1,4 +1,4 @@
-package com.example.bordelmc
+package com.example.bordelmc.navigation
 
 sealed class Screen(val route: String) {
     object Home : Screen("home")

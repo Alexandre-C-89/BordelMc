@@ -1,4 +1,4 @@
-package com.example.bordelmc
+package com.example.bordelmc.data
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

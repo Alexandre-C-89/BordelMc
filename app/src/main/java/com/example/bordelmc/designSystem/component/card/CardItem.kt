@@ -1,8 +1,7 @@
-package com.example.bordelmc
+package com.example.bordelmc.designSystem.component.card
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,8 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.bordelmc.ui.theme.BordelMcTheme
-import com.example.bordelmc.ui.theme.Shapes
+import com.example.bordelmc.designSystem.theme.BordelMcTheme
+import com.example.bordelmc.designSystem.theme.Shapes
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

@@ -1,4 +1,4 @@
-package com.example.bordelmc.ui.theme
+package com.example.bordelmc.designSystem.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

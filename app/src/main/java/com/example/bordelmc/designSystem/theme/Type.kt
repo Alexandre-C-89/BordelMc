@@ -1,4 +1,4 @@
-package com.example.bordelmc.ui.theme
+package com.example.bordelmc.designSystem.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

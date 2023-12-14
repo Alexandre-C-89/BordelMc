@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.example.bordelmc.ui.theme.BordelMcTheme
+import com.example.bordelmc.navigation.AppNavHost
+import com.example.bordelmc.designSystem.theme.BordelMcTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
