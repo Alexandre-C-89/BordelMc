@@ -44,7 +44,6 @@ import com.example.bordelmc.designSystem.theme.BordelMcTheme
 
 @Composable
 fun CheckboxItem() {
-
 }
 
 @Composable
