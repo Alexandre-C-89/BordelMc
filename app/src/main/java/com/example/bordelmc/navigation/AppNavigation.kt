@@ -34,16 +34,16 @@ fun NavGraphBuilder.search(
     navToHomeScreen: () -> Unit,
     navToSearchScreen: () -> Unit,
     navToProfileScreen: () -> Unit,
-    onGetQuotes : ()-> Unit,
-    uiState: UiState
+    //onGetQuotes : ()-> Unit,
+    //uiState: UiState
 ) {
-    composable(home) {
+    composable(search) {
         SearchScreen(
             navToHomeScreen = navToHomeScreen,
             navToProfileScreen = navToProfileScreen,
             navToSearchScreen = navToSearchScreen,
-            onGetQuotes = onGetQuotes,
-            uiState = uiState
+            //onGetQuotes = onGetQuotes,
+            //uiState = uiState
         )
     }
 }

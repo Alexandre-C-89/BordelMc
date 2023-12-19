@@ -3,15 +3,14 @@ package com.example.bordelmc
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bordelmc.data.repository.QuotesRepository
 import com.example.bordelmc.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
+/**@HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repository: QuotesRepository
+    //private val repository: QuotesRepository
 ) : ViewModel() {
 
     val uiState = mutableStateOf(UiState())
@@ -48,4 +47,4 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-}
+}*/

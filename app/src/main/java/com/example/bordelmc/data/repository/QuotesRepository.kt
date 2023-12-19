@@ -1,12 +1,7 @@
 package com.example.bordelmc.data.repository
 
-import com.example.bordelmc.data.datasource.QuotesApi
-import com.example.bordelmc.util.Resource
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
 
-class QuotesRepository @Inject constructor(
+/**class QuotesRepository @Inject constructor(
     private val api: QuotesApi
 ) {
 
@@ -18,4 +13,4 @@ class QuotesRepository @Inject constructor(
         emit(Resource.Error(error.message!!))
     }
 
-}
+}*/

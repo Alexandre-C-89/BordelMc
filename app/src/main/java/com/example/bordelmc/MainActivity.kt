@@ -9,6 +9,9 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.example.bordelmc.navigation.AppNavHost
 import com.example.bordelmc.designSystem.theme.BordelMcTheme
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
