@@ -13,16 +13,17 @@ import com.example.bordelmc.designSystem.theme.Shapes
 
 @Composable
 fun ButtonItem(
-    context: Context
+    context: Context,
+    text: String,
+    onClick: () -> Unit
 ) {
-    //val context = LocalContext.current
     Button(
         modifier = Modifier
             .width(100.dp)
             .height(50.dp),
         shape = Shapes.large,
-        onClick = { Toast.makeText(context, "This is a Toast. Vay !", Toast.LENGTH_LONG).show() }
+        onClick = onClick
     ) {
-        Text(text = "Toast !")
+        Text(text = text)
     }
 }

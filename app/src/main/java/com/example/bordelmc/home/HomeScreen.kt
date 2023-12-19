@@ -1,6 +1,7 @@
 package com.example.bordelmc.home
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -50,7 +51,12 @@ fun HomeScreen(
         optionsList.add(OptionsList(icon = Icons.Outlined.LocationOn, option = "New Ideas"))
         optionsList.add(OptionsList(icon = Icons.Outlined.PlayArrow, option = "Items History"))
         optionsList.add(OptionsList(icon = Icons.Outlined.AccountBox, option = "Shared Articles"))
-        optionsList.add(OptionsList(icon = Icons.Outlined.Notifications, option = "Previous Notifications"))
+        optionsList.add(
+            OptionsList(
+                icon = Icons.Outlined.Notifications,
+                option = "Previous Notifications"
+            )
+        )
         optionsList.add(OptionsList(icon = Icons.Outlined.Favorite, option = "Verification Badge"))
         optionsList.add(OptionsList(icon = Icons.Outlined.DateRange, option = "Pending Tasks"))
         optionsList.add(OptionsList(icon = Icons.Outlined.ExitToApp, option = "FAQs"))
@@ -58,6 +64,7 @@ fun HomeScreen(
 
         return optionsList
     }
+
     val optionsList = prepareOptionsList()
     Scaffold(
         topBar = { AppBar() },
@@ -93,7 +100,13 @@ fun HomeScreen(
                         CardImageItem(optionsList = item)
                     }
                 }
-                ButtonItem(context = context)
+                ButtonItem(
+                    context = context,
+                    onClick = {
+                        Toast.makeText(context, "This is a Toast. Vay !", Toast.LENGTH_LONG).show()
+                    },
+                    text = "Toast !"
+                )
             }
         }
     }
@@ -104,7 +117,9 @@ fun HomeScreen(
 fun HomeScreenPreview() {
     BordelMcTheme {
         HomeScreen(
-            navToHomeScreen = { /*TODO*/ }, navToProfileScreen = { /*TODO*/ }, navToSearchScreen = { /*TODO*/ }
+            navToHomeScreen = { /*TODO*/ },
+            navToProfileScreen = { /*TODO*/ },
+            navToSearchScreen = { /*TODO*/ }
         )
     }
 }
