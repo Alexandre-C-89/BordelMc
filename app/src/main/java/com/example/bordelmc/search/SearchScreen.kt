@@ -1,5 +1,6 @@
 package com.example.bordelmc.search
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -32,8 +33,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bordelmc.UiState
+import com.example.bordelmc.designSystem.component.bar.AppBar
 import com.example.bordelmc.designSystem.component.bar.AppBottomBar
+import com.example.bordelmc.designSystem.component.card.CardItem
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun SearchScreen(
     //onGetQuotes: () -> Unit,
@@ -42,6 +46,29 @@ fun SearchScreen(
     navToSearchScreen: () -> Unit,
     //uiState: UiState
 ) {
+    Scaffold(
+        topBar = { AppBar() },
+        bottomBar = { AppBottomBar(
+            navToHomeScreen = navToHomeScreen,
+            navToSearchScreen = navToSearchScreen,
+            navToProfileScreen = navToProfileScreen
+        ) }
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                Text(text = "SearchScreen !")
+                Spacer(modifier = Modifier.height(8.dp))
+                CardItem()
+            }
+        }
+    }
     /**Scaffold(
         topBar = {
             TopAppBar(
