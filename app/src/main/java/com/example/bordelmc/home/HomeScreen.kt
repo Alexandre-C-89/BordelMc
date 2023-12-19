@@ -24,6 +24,7 @@ import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bordelmc.designSystem.component.bar.AppBar
@@ -31,6 +32,7 @@ import com.example.bordelmc.designSystem.component.bar.AppBottomBar
 import com.example.bordelmc.designSystem.component.card.CardImageItem
 import com.example.bordelmc.designSystem.component.card.CardItem
 import com.example.bordelmc.data.OptionsList
+import com.example.bordelmc.designSystem.component.button.ButtonItem
 import com.example.bordelmc.designSystem.theme.BordelMcTheme
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -67,6 +69,9 @@ fun HomeScreen(
             )
         }
     ) {
+
+        val context = LocalContext.current
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -88,6 +93,7 @@ fun HomeScreen(
                         CardImageItem(optionsList = item)
                     }
                 }
+                ButtonItem(context = context)
             }
         }
     }
