@@ -25,6 +25,9 @@ import com.example.bordelmc.designSystem.component.bar.AppBar
 import com.example.bordelmc.designSystem.component.bar.AppBottomBar
 import com.example.compose.BordelMcTheme
 import com.example.bordelmc.designSystem.theme.Shapes
+import com.example.compose.Blue90
+import com.example.compose.PurpleGray60
+import com.example.compose.Teal90
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -42,7 +45,8 @@ fun ProfileScreen(
             navToHomeScreen = navToHomeScreen,
             navToSearchScreen = navToSearchScreen,
             navToProfileScreen = navToProfileScreen
-        ) }
+        ) },
+        backgroundColor = PurpleGray60
     ) {
         Box(
             modifier = Modifier
