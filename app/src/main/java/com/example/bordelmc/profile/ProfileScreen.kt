@@ -23,7 +23,7 @@ import com.example.bordelmc.designSystem.component.InfoItemColumn
 import com.example.bordelmc.designSystem.component.card.CardItem
 import com.example.bordelmc.designSystem.component.bar.AppBar
 import com.example.bordelmc.designSystem.component.bar.AppBottomBar
-import com.example.bordelmc.designSystem.theme.BordelMcTheme
+import com.example.compose.BordelMcTheme
 import com.example.bordelmc.designSystem.theme.Shapes
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

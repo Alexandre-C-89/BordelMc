@@ -15,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,8 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bordelmc.R
 import com.example.bordelmc.designSystem.component.button.ButtonItem
-import com.example.bordelmc.designSystem.theme.BordelMcTheme
 import com.example.bordelmc.designSystem.theme.Shapes
+import com.example.compose.BordelMcTheme
 
 @Composable
 fun CardImageItem(

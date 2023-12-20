@@ -39,7 +39,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
-import com.example.bordelmc.designSystem.theme.BordelMcTheme
+import com.example.compose.BordelMcTheme
 
 
 @Composable

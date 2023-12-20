@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -34,7 +35,7 @@ import com.example.bordelmc.designSystem.component.card.CardImageItem
 import com.example.bordelmc.designSystem.component.card.CardItem
 import com.example.bordelmc.data.OptionsList
 import com.example.bordelmc.designSystem.component.button.ButtonItem
-import com.example.bordelmc.designSystem.theme.BordelMcTheme
+import com.example.compose.BordelMcTheme
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -107,6 +108,9 @@ fun HomeScreen(
                     },
                     text = "Toast !"
                 )
+                Button(onClick = { /*TODO*/ }) {
+                    Text(text = "Subscribe")
+                }
             }
         }
     }

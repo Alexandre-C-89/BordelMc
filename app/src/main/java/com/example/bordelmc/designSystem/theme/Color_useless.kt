@@ -2,14 +2,14 @@ package com.example.bordelmc.designSystem.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val Yellow = Color(0xFFE0BD61)
+val Green = Color(0xFF36E275)
+val Grey = Color(0xFFAFAFAF)
+val Black = Color(0xFF052549)
 
 val DarkBlue = Color(0xFF043569)
 val LightBlue = Color(0xFF055DBB)
 val ExtraLightBlue = Color(0xFF67B0FD)
 val ExtraLightOrange = Color(0xFFEEDEC7)
-val LightOrange = Color(0xFFF38F00)
+val Orange = Color(0xFFF38F00)
 val DarkOrange = Color(0xFF8F5400)
