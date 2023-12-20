@@ -43,7 +43,7 @@ fun BordelMcThemeUseless(
 
     MaterialTheme(
         colors = colors,
-        typography = Typography,
+        //typography = alexTypography,
         shapes = Shapes,
         content = content
     )

@@ -11,7 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.compose.Blue10
+import com.example.compose.Blue80
 import com.example.compose.BordelMcTheme
+import com.example.compose.Green20
+import com.example.compose.Green40
+import com.example.compose.Green80
 
 @Composable
 fun AppBar(
@@ -21,7 +26,7 @@ fun AppBar(
         modifier = Modifier
             .fillMaxWidth()
             .height(60.dp),
-        backgroundColor = MaterialTheme.colors.primarySurface,
+        backgroundColor = Green80,
         elevation = AppBarDefaults.TopAppBarElevation
     )
 }

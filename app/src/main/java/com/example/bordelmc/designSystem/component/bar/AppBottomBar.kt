@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import com.example.bordelmc.designSystem.theme.LightBlue
+import com.example.compose.Green80
 
 @Composable
 fun AppBottomBar(
@@ -18,7 +19,7 @@ fun AppBottomBar(
     navToProfileScreen: () -> Unit
 ) {
     BottomAppBar(
-        contentColor = LightBlue,
+        backgroundColor = Green80,
         cutoutShape = CircleShape,
     ) {
         IconButton(
