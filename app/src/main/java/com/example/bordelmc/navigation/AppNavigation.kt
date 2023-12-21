@@ -3,7 +3,6 @@ package com.example.bordelmc.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.bordelmc.UiState
 import com.example.bordelmc.home.HomeScreen
 import com.example.bordelmc.profile.ProfileScreen
 import com.example.bordelmc.search.SearchScreen
@@ -33,17 +32,13 @@ const val search = "search"
 fun NavGraphBuilder.search(
     navToHomeScreen: () -> Unit,
     navToSearchScreen: () -> Unit,
-    navToProfileScreen: () -> Unit,
-    //onGetQuotes : ()-> Unit,
-    //uiState: UiState
+    navToProfileScreen: () -> Unit
 ) {
     composable(search) {
         SearchScreen(
             navToHomeScreen = navToHomeScreen,
             navToProfileScreen = navToProfileScreen,
             navToSearchScreen = navToSearchScreen,
-            //onGetQuotes = onGetQuotes,
-            //uiState = uiState
         )
     }
 }

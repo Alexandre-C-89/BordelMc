@@ -93,6 +93,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3")
+    implementation ("com.squareup.retrofit:converter-gson:2.0.0-beta2")
 
     // Room
     implementation ("androidx.room:room-ktx:2.6.1")
