@@ -26,7 +26,7 @@ fun AppNavHost(
             navToHomeScreen = { navController.navigate(home) },
             navToSearchScreen = { navController.navigate(quote) },
             navToProfileScreen = { navController.navigate(profile) },
-            onGetQuotes = { viewModel.getQuotes() },
+            //onGetQuotes = { viewModel.getQuotes() },
             uiState = viewModel.uiState.value
         )
         profile(

@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountBox
@@ -27,14 +26,19 @@ import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.bordelmc.R
+import com.example.bordelmc.data.OptionsList
+import com.example.bordelmc.designSystem.component.AppScaffold
 import com.example.bordelmc.designSystem.component.bar.AppBar
 import com.example.bordelmc.designSystem.component.bar.AppBottomBar
+import com.example.bordelmc.designSystem.component.button.ButtonItem
 import com.example.bordelmc.designSystem.component.card.CardImageItem
 import com.example.bordelmc.designSystem.component.card.CardItem
-import com.example.bordelmc.data.OptionsList
-import com.example.bordelmc.designSystem.component.button.ButtonItem
+import com.example.bordelmc.designSystem.component.text.Body
+import com.example.bordelmc.designSystem.component.text.Title
 import com.example.compose.BordelMcTheme
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -67,7 +71,7 @@ fun HomeScreen(
     }
 
     val optionsList = prepareOptionsList()
-    Scaffold(
+    AppScaffold(
         topBar = { AppBar() },
         bottomBar = {
             AppBottomBar(
@@ -89,8 +93,8 @@ fun HomeScreen(
                 modifier = Modifier
                     .fillMaxSize()
             ) {
-                Text(text = "Bienvenue sur BordelMc !")
-                Text(text = "Ceci est une application où j'expérimente les bases de Compose tout comme les concepts un peu plus avancé !J'y apporte au fur et à mesure de nouvelles mise à jours que ce soit pour du contenu ou pour améliorer ce qui est en place. Au plaisir de vous voir utiliser l'app !  Alexandre")
+                Title.Big(text = stringResource(id = R.string.home_screen_title))
+                Body.Default(text = stringResource(id = R.string.home_screen_presentation))
                 Spacer(modifier = Modifier.height(8.dp))
                 CardItem()
                 LazyRow(

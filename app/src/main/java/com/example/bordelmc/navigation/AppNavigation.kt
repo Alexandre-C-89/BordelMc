@@ -34,12 +34,15 @@ fun NavGraphBuilder.quote(
     navToHomeScreen: () -> Unit,
     navToSearchScreen: () -> Unit,
     navToProfileScreen: () -> Unit,
-    onGetQuotes : ()-> Unit,
+    //onGetQuotes : ()-> Unit,
     uiState: UiState
 ) {
     composable(quote) {
         QuotesScreen(
-            onGetQuotes = onGetQuotes,
+            navToHomeScreen = navToHomeScreen,
+            navToSearchScreen = navToSearchScreen,
+            navToProfileScreen = navToProfileScreen,
+            //onGetQuotes = onGetQuotes,
             uiState = uiState
         )
     }

@@ -11,79 +11,71 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.bordelmc.designSystem.component.AppScaffold
+import com.example.bordelmc.designSystem.component.bar.AppBar
+import com.example.bordelmc.designSystem.component.bar.AppBottomBar
 import com.example.bordelmc.quote.model.UiState
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuotesScreen(
-    onGetQuotes : ()-> Unit,
+    navToHomeScreen: () -> Unit,
+    navToProfileScreen: () -> Unit,
+    navToSearchScreen: () -> Unit,
     uiState: UiState
-){
-    Scaffold(
-        topBar = {
-            TopAppBar (
-                title = {
-                    Text(text = "QuotesApp",
-                        style = TextStyle(
-                            fontWeight = FontWeight.ExtraBold,
-                            fontSize = 24.sp)
-                    )
-                },
-                actions = {
-                    IconButton(onClick = onGetQuotes) {
-                        Icon(imageVector = Icons.Filled.Refresh, contentDescription = null)
-                    }
-                }
+) {
+    AppScaffold(
+        topBar = { AppBar() },
+        bottomBar = {
+            AppBottomBar(
+                navToHomeScreen = navToHomeScreen,
+                navToSearchScreen = navToSearchScreen,
+                navToProfileScreen = navToProfileScreen
             )
         }
     ) {
-        Box(modifier = Modifier
-            .padding(it)
-            .fillMaxSize()){
-            if(uiState.isLoading){
+        Box(
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxSize()
+        ) {
+            if (uiState.isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier.align(Alignment.Center)
                 )
-            }else if(!uiState.error.isNullOrEmpty()){
+            } else if (!uiState.error.isNullOrEmpty()) {
                 Column(
                     modifier = Modifier
                         .padding(16.dp)
                         .align(Alignment.Center),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Icon(imageVector = Icons.Filled.Warning,
+                    Icon(
+                        imageVector = Icons.Filled.Warning,
                         contentDescription = null,
                         tint = Color.Red
                     )
                     Text(text = uiState.error, textAlign = TextAlign.Center)
                 }
-            }else{
+            } else {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(16.dp)
-                ){
-                    items(uiState.quotes!!){ quote->
+                ) {
+                    items(uiState.quotes!!) { quote ->
                         Column(
                             modifier = Modifier.fillMaxWidth(),
                         ) {

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BordelMc</string>
+
+    <string name="home_screen_title" translatable="false">Bienvenue sur BordelMc !</string>
+    <string name="home_screen_presentation" translatable="false">Ceci est une application où j\'expérimente les bases de Compose tout comme les concepts un peu plus avancé !J\'y apporte au fur et à mesure de nouvelles mise à jours que ce soit pour du contenu ou pour améliorer ce qui est en place. Au plaisir de vous voir utiliser l\'app !  Alexandre</string>
+
+
 </resources>
