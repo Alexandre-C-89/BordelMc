@@ -12,10 +12,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.compose.BordelMcTheme
 import com.example.bordelmc.designSystem.theme.Shapes
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -36,23 +34,14 @@ fun CardItem(
                 .padding(8.dp)
         ) {
             Text(
-                text = "Simple card",
+                text = "post.title",
                 fontSize = 18.sp
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Text for descritpion and other things !",
+                text = "post.body",
                 fontSize = 12.sp
             )
         }
-    }
-}
-
-@Preview
-@Composable
-fun CardItemPreview() {
-    BordelMcTheme {
-        CardItem(
-        )
     }
 }

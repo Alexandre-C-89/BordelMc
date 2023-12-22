@@ -1,4 +1,4 @@
-package com.example.bordelmc.util
+package com.example.bordelmc.data.utils
 
 sealed class Resource<T>(
     val data: T? = null,
