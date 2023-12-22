@@ -1,4 +1,4 @@
-package com.example.bordelmc.data.model
+package com.example.bordelmc.data.model.quote
 
 data class Quote(
     val id : Int,
