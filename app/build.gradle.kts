@@ -1,11 +1,10 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    //id("kotlin-android-extensions")
 }
 
 android {
@@ -71,7 +70,7 @@ dependencies {
     debugImplementation ("androidx.compose.ui:ui-tooling:1.5.4")
     debugImplementation ("androidx.compose.ui:ui-test-manifest:1.5.4")
     // LiveData
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
 
     // Material 3
     implementation ("androidx.compose.material3:material3:1.1.2")
@@ -79,8 +78,8 @@ dependencies {
     // Coil Compose
     implementation ("io.coil-kt:coil-compose:2.4.0")
 
-    implementation ("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
 
     // Dagger - Hilt
     implementation ("com.google.dagger:hilt-android:2.48.1")
