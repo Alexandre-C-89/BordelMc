@@ -1,10 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
-    //id("kotlin-android-extensions")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -56,24 +55,26 @@ android {
 dependencies {
 
     implementation ("androidx.core:core-ktx:1.12.0")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation ("androidx.activity:activity-compose:1.8.2")
-    implementation ("androidx.compose.ui:ui:1.5.4")
+    implementation ("androidx.compose.ui:ui:1.6.1")
     implementation ("androidx.compose.ui:ui-graphics")
-    implementation ("androidx.compose.ui:ui-tooling-preview:1.5.4")
-    implementation ("androidx.compose.material:material:1.5.4")
-    implementation("androidx.compose.material3:material3:1.1.2")
+    implementation ("androidx.compose.ui:ui-tooling-preview:1.6.1")
+    implementation ("androidx.compose.material:material:1.6.1")
+    implementation("androidx.compose.material3:material3:1.2.0")
+    implementation("com.google.firebase:firebase-common-ktx:20.4.2")
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.5.4")
-    debugImplementation ("androidx.compose.ui:ui-tooling:1.5.4")
-    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.5.4")
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.6.1")
+    debugImplementation ("androidx.compose.ui:ui-tooling:1.6.1")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.6.1")
+
     // LiveData
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
 
     // Material 3
-    implementation ("androidx.compose.material3:material3:1.1.2")
+    implementation ("androidx.compose.material3:material3:1.2.0")
 
     // Coil Compose
     implementation ("io.coil-kt:coil-compose:2.4.0")
@@ -86,6 +87,11 @@ dependencies {
     kapt ("com.google.dagger:hilt-android-compiler:2.48.1")
     kapt ("androidx.hilt:hilt-compiler:1.1.0")
     implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
+    //navigation
+    implementation("androidx.navigation:navigation-compose:2.4.2") {
+        this.isTransitive = true
+    }
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 
     // Paging
     implementation ("androidx.paging:paging-runtime-ktx:3.2.1")
@@ -106,6 +112,13 @@ dependencies {
     //Coroutine
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:30.1.0"))
+    //authentication
+    implementation("com.google.firebase:firebase-auth-ktx")
+    //firestore
+    implementation("com.google.firebase:firebase-firestore-ktx")
 
 }
 

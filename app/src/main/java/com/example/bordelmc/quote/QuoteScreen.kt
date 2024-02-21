@@ -26,6 +26,18 @@ import com.example.bordelmc.designSystem.component.bar.AppBottomBar
 import com.example.bordelmc.quote.model.UiState
 import com.example.compose.BordelMcTheme
 
+/**QuotesRoutes(
+
+) {
+
+    QuotesScreen(
+        navToHomeScreen = { /*TODO*/ },
+        navToProfileScreen = { /*TODO*/ },
+        navToSearchScreen = { /*TODO*/ },
+        uiState =
+    )
+}*/
+
 @Composable
 fun QuotesScreen(
     navToHomeScreen: () -> Unit,

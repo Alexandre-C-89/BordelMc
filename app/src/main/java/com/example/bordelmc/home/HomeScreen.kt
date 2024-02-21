@@ -12,8 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountBox
 import androidx.compose.material.icons.outlined.DateRange
@@ -23,12 +21,17 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.PlayArrow
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.bordelmc.R
 import com.example.bordelmc.data.OptionsList
 import com.example.bordelmc.designSystem.component.AppScaffold
@@ -39,15 +42,21 @@ import com.example.bordelmc.designSystem.component.card.CardImageItem
 import com.example.bordelmc.designSystem.component.card.CardItem
 import com.example.bordelmc.designSystem.component.text.Body
 import com.example.bordelmc.designSystem.component.text.Title
+import com.example.bordelmc.home.model.HomeUiState
 import com.example.compose.BordelMcTheme
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
+    navController: NavHostController,
     navToHomeScreen: () -> Unit,
     navToProfileScreen: () -> Unit,
-    navToSearchScreen: () -> Unit
+    navToSearchScreen: () -> Unit,
+    homeViewModel: HomeViewModel? = hiltViewModel()
 ) {
+
+    val homeUiState = homeViewModel?.homeUiState ?: HomeUiState()
+
     fun prepareOptionsList(): MutableList<OptionsList> {
         val optionsList = mutableListOf<OptionsList>()
 
@@ -125,6 +134,7 @@ fun HomeScreen(
 fun HomeScreenPreview() {
     BordelMcTheme {
         HomeScreen(
+            navController = rememberNavController(),
             navToHomeScreen = { /*TODO*/ },
             navToProfileScreen = { /*TODO*/ },
             navToSearchScreen = { /*TODO*/ }
