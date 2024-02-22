@@ -1,143 +1,262 @@
 package com.example.bordelmc.home
 
-import android.annotation.SuppressLint
-import android.widget.Toast
+import android.util.Log
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AccountBox
-import androidx.compose.material.icons.outlined.DateRange
-import androidx.compose.material.icons.outlined.ExitToApp
-import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.LocationOn
-import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material.icons.outlined.PlayArrow
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.example.bordelmc.R
-import com.example.bordelmc.data.OptionsList
-import com.example.bordelmc.designSystem.component.AppScaffold
-import com.example.bordelmc.designSystem.component.bar.AppBar
-import com.example.bordelmc.designSystem.component.bar.AppBottomBar
-import com.example.bordelmc.designSystem.component.button.ButtonItem
-import com.example.bordelmc.designSystem.component.card.CardImageItem
-import com.example.bordelmc.designSystem.component.card.CardItem
-import com.example.bordelmc.designSystem.component.text.Body
-import com.example.bordelmc.designSystem.component.text.Title
+import com.example.bordelmc.data.model.note.NotesModel
+import com.example.bordelmc.data.repository.auth.Resources
+import com.example.bordelmc.designSystem.component.NotesItem
 import com.example.bordelmc.home.model.HomeUiState
-import com.example.compose.BordelMcTheme
+import com.example.bordelmc.navigation.AuthNavRoutes
+import com.example.justnote.navigation.MainNavRouts
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     navController: NavHostController,
-    navToHomeScreen: () -> Unit,
-    navToProfileScreen: () -> Unit,
-    navToSearchScreen: () -> Unit,
     homeViewModel: HomeViewModel? = hiltViewModel()
 ) {
-
     val homeUiState = homeViewModel?.homeUiState ?: HomeUiState()
 
-    fun prepareOptionsList(): MutableList<OptionsList> {
-        val optionsList = mutableListOf<OptionsList>()
-
-        optionsList.add(OptionsList(icon = Icons.Outlined.Favorite, option = "Saved Items"))
-        optionsList.add(OptionsList(icon = Icons.Outlined.PlayArrow, option = "Payment History"))
-        optionsList.add(OptionsList(icon = Icons.Outlined.LocationOn, option = "New Ideas"))
-        optionsList.add(OptionsList(icon = Icons.Outlined.PlayArrow, option = "Items History"))
-        optionsList.add(OptionsList(icon = Icons.Outlined.AccountBox, option = "Shared Articles"))
-        optionsList.add(
-            OptionsList(
-                icon = Icons.Outlined.Notifications,
-                option = "Previous Notifications"
-            )
-        )
-        optionsList.add(OptionsList(icon = Icons.Outlined.Favorite, option = "Verification Badge"))
-        optionsList.add(OptionsList(icon = Icons.Outlined.DateRange, option = "Pending Tasks"))
-        optionsList.add(OptionsList(icon = Icons.Outlined.ExitToApp, option = "FAQs"))
-        optionsList.add(OptionsList(icon = Icons.Outlined.Home, option = "Support"))
-
-        return optionsList
+    var openDialog by remember {
+        mutableStateOf(false)
+    }
+    var selectedNote: NotesModel? by remember {
+        mutableStateOf(null)
     }
 
-    val optionsList = prepareOptionsList()
-    AppScaffold(
-        topBar = { AppBar() },
-        bottomBar = {
-            AppBottomBar(
-                navToHomeScreen = navToHomeScreen,
-                navToSearchScreen = navToSearchScreen,
-                navToProfileScreen = navToProfileScreen
-            )
-        }
-    ) {
 
-        val context = LocalContext.current
-
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp)
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(onClick = {
+                navController.navigate(MainNavRouts.NotesScreen.passNoteId(""))
+            }) {
+                Icon(imageVector = Icons.Default.Add, contentDescription = "")
+            }
+        },
+        topBar = {
+            Surface(
+                shadowElevation = 8.dp,
             ) {
-                Title.Big(text = stringResource(id = R.string.home_screen_title))
-                Body.Default(text = stringResource(id = R.string.home_screen_presentation))
-                Spacer(modifier = Modifier.height(8.dp))
-                CardItem()
-                LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(space = 12.dp),
-                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 12.dp)
-                ) {
-                    items(optionsList) { item ->
-                        CardImageItem(optionsList = item)
+
+                TopAppBar(
+                    title = {
+                        Text(text = "Notes", color = MaterialTheme.colorScheme.onPrimary)
+                    },
+                    actions = {
+                        IconButton(onClick = {
+                            homeViewModel?.signOutUser()
+                            navController.popBackStack()
+                            navController.navigate(AuthNavRoutes.Splash.route)
+                        }) {
+                            Icon(imageVector = Icons.Default.ExitToApp, contentDescription = "", tint = MaterialTheme.colorScheme.onPrimary)
+                        }
+                    },
+                    navigationIcon = {
+
+                    },
+                    colors = TopAppBarDefaults.largeTopAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.primary
+                    )
+                )
+            }
+        },
+
+        content = { paddingValues ->
+
+            Column(
+                modifier = Modifier.padding(paddingValues)
+            ) {
+                when (homeUiState.notesData) {
+                    is Resources.Loading -> {
+                        CircularProgressIndicator(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .wrapContentSize(align = Alignment.Center)
+                        )
+                    }
+
+                    is Resources.Success -> {
+                        var search by remember { mutableStateOf("") }
+
+                        AppSearchBar(search = search, onValueChange = {
+                            search = it
+                        })
+                        LazyVerticalGrid(
+                            columns = GridCells.Fixed(2),
+                            contentPadding = PaddingValues(16.dp),
+                            verticalArrangement = Arrangement.Top
+                        ) {
+
+                            val filteredNotes: List<NotesModel> = if (search.isEmpty()) {
+                                homeUiState.notesData.data ?: emptyList()
+                            } else {
+                                val result: ArrayList<NotesModel> = arrayListOf()
+                                for (item in homeUiState.notesData.data ?: emptyList()) {
+                                    if (item.noteTitle.lowercase().contains(search.lowercase())
+                                        || item.notesDescription.lowercase().contains(search.lowercase())
+                                    ) {
+                                        result.add(item)
+                                    }
+                                }
+                                result
+
+                            }
+
+                            items(filteredNotes, key = {
+                                it.documentId
+                            }) { notes ->
+                                NotesItem(notesModel = notes,
+                                    onLongClick = {
+                                        openDialog = true
+                                        selectedNote = notes
+                                    },
+                                    onClick = {
+                                        navController.navigate(MainNavRouts.NotesScreen.passNoteId(notes.documentId))
+                                    })
+                            }
+
+                        }
+                        AnimatedVisibility(
+                            visible = openDialog
+                        ) {
+                            AlertDialog(
+                                onDismissRequest = {
+                                    openDialog = false
+                                },
+                                title = { Text(text = "Delete Note?") },
+                                confirmButton = {
+                                    Button(
+                                        onClick = {
+                                            selectedNote?.documentId?.let {
+                                                homeViewModel?.deleteNote(it)
+                                            }
+                                            openDialog = false
+                                        },
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = Color.Red.copy(alpha = 0.5f)
+                                        ),
+                                    ) {
+                                        Text(text = "Delete")
+                                    }
+                                },
+                                dismissButton = {
+                                    Button(onClick = { openDialog = false }) {
+                                        Text(text = "Cancel")
+                                    }
+                                }
+                            )
+
+
+                        }
+                    }
+
+                    else -> {
+                        Text(
+                            text = homeUiState
+                                .notesData.throwable?.localizedMessage ?: "Unknown Error",
+                            color = Color.Red
+
+                        )
                     }
                 }
-                ButtonItem(
-                    context = context,
-                    onClick = {
-                        Toast.makeText(context, "This is a Toast. Vay !", Toast.LENGTH_LONG).show()
-                    },
-                    text = "Toast !"
-                )
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Subscribe")
-                }
+
             }
+
+        }
+    )
+    LaunchedEffect(key1 = Unit) {
+        Log.i("TAG", "HomeScreen: ${homeViewModel?.userExists == false}")
+        if (homeViewModel?.userExists == false) {
+            navController.navigate(AuthNavRoutes.Splash.route)
+        } else {
+            homeViewModel?.loadNotesData()
         }
     }
+
 }
 
-@Preview
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreenPreview() {
-    BordelMcTheme {
-        HomeScreen(
-            navController = rememberNavController(),
-            navToHomeScreen = { /*TODO*/ },
-            navToProfileScreen = { /*TODO*/ },
-            navToSearchScreen = { /*TODO*/ }
+fun AppSearchBar(
+    search: String,
+    onValueChange: (String) -> Unit
+
+) {
+    TextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        value = search,
+        onValueChange = {
+            onValueChange.invoke(it)
+        },
+        leadingIcon = {
+            Icon(imageVector = Icons.Default.Search, contentDescription = "email")
+        },
+        trailingIcon = {
+            if (search.isNotEmpty()) {
+                IconButton(onClick = {
+                    onValueChange.invoke("")
+                }) {
+                    Icon(imageVector = Icons.Default.Close, contentDescription = "email")
+                }
+
+            }
+        },
+        placeholder = {
+            Text(text = "Search here...")
+        },
+        shape = RoundedCornerShape(20),
+        colors = TextFieldDefaults.textFieldColors(
+            containerColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
         )
-    }
+    )
+
 }

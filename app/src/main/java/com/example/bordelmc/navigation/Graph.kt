@@ -1,30 +1,33 @@
-package com.example.bordelmc.navigation
+package com.example.justnote.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
 import com.example.bordelmc.home.HomeViewModel
+import com.example.bordelmc.navigation.authNavGraph
 
 object Graph {
     const val ROOT_GRAPH = "root_graph"
-    //const val AUTH_GRAPH = "auth_graph"
+    const val AUTH_GRAPH = "auth_graph"
     const val MAIN_GRAPH = "main_graph"
 }
 
 @Composable
-fun AppNavHost(
+fun RootNavGraph(
+    navController: NavHostController,
     homeViewModel: HomeViewModel? = hiltViewModel()
 ) {
-    val navController = rememberNavController()
+
     val userExist = homeViewModel?.userExists ?: false
 
     NavHost(
         navController = navController,
-        startDestination = Graph.MAIN_GRAPH,
+        startDestination = if (userExist) Graph.MAIN_GRAPH else Graph.AUTH_GRAPH,
         route = Graph.ROOT_GRAPH
     ) {
-        //authNavGraph(navController)
+        authNavGraph(navController)
         mainNavGraph(navController)
+
     }
 }
