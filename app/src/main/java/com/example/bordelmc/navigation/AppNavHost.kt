@@ -8,7 +8,7 @@ import com.example.bordelmc.home.HomeViewModel
 
 object Graph {
     const val ROOT_GRAPH = "root_graph"
-    const val AUTH_GRAPH = "auth_graph"
+    //const val AUTH_GRAPH = "auth_graph"
     const val MAIN_GRAPH = "main_graph"
 }
 
@@ -17,15 +17,14 @@ fun AppNavHost(
     homeViewModel: HomeViewModel? = hiltViewModel()
 ) {
     val navController = rememberNavController()
-    //val viewModel: QuoteViewModel = hiltViewModel()
     val userExist = homeViewModel?.userExists ?: false
 
     NavHost(
         navController = navController,
-        startDestination = if (userExist) Graph.MAIN_GRAPH else Graph.AUTH_GRAPH,
+        startDestination = Graph.MAIN_GRAPH,
         route = Graph.ROOT_GRAPH
     ) {
-        authNavGraph(navController)
+        //authNavGraph(navController)
         mainNavGraph(navController)
     }
 }
