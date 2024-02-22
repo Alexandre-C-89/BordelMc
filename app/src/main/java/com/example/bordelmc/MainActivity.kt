@@ -7,17 +7,18 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.bordelmc.navigation.AppNavHost
-import com.example.bordelmc.navigation.mainNavGraph
+import com.example.bordelmc.profile.ProfileScreen
 import com.example.bordelmc.sign_in.SignInScreen
 import com.example.compose.BordelMcTheme
 import com.google.android.gms.auth.api.identity.Identity
@@ -40,7 +41,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BordelMcTheme {
-                Surface{
+                // A surface container using the 'background' color from the theme
+                androidx.compose.material.Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "sign_in") {
                         composable("sign_in") {
@@ -49,7 +54,7 @@ class MainActivity : ComponentActivity() {
 
                             LaunchedEffect(key1 = Unit) {
                                 if (googleAuthUiClient.getSignedInUser() != null) {
-                                    mainNavGraph(navController)
+                                    navController.navigate("profile")
                                 }
                             }
 
@@ -75,7 +80,7 @@ class MainActivity : ComponentActivity() {
                                         Toast.LENGTH_LONG
                                     ).show()
 
-                                    navController.navigate("home")
+                                    navController.navigate("profile")
                                     viewModel.resetState()
                                 }
                             }
@@ -94,25 +99,24 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         }
-                        /**composable("profile") {
-                        ProfileScreen(
-                        userData = googleAuthUiClient.getSignedInUser(),
-                        onSignOut = {
-                        lifecycleScope.launch {
-                        googleAuthUiClient.signOut()
-                        Toast.makeText(
-                        applicationContext,
-                        "Signed out",
-                        Toast.LENGTH_LONG
-                        ).show()
+                        composable("profile") {
+                            ProfileScreen(
+                                userData = googleAuthUiClient.getSignedInUser(),
+                                onSignOut = {
+                                    lifecycleScope.launch {
+                                        googleAuthUiClient.signOut()
+                                        Toast.makeText(
+                                            applicationContext,
+                                            "Signed out",
+                                            Toast.LENGTH_LONG
+                                        ).show()
 
-                        navController.popBackStack()
+                                        navController.popBackStack()
+                                    }
+                                }
+                            )
                         }
-                        }
-                        )
-                        }*/
                     }
-                    AppNavHost()
                 }
             }
         }
