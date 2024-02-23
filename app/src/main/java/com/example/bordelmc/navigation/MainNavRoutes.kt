@@ -8,6 +8,8 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
 import com.example.bordelmc.home.HomeScreen
 import com.example.bordelmc.note_screen.NotesScreen
+import com.example.bordelmc.quote.QuotesScreen
+import com.example.bordelmc.quote.model.UiState
 
 sealed class MainNavRouts(val routes: String) {
     object Home : MainNavRouts("Home")
@@ -16,6 +18,10 @@ sealed class MainNavRouts(val routes: String) {
             return "Notes?$noteId"
         }
     }
+
+    object Quotes : MainNavRouts("Quotes")
+
+    object Profile : MainNavRouts("Profile")
 }
 
 fun NavGraphBuilder.mainNavGraph(
@@ -26,7 +32,11 @@ fun NavGraphBuilder.mainNavGraph(
         startDestination = MainNavRouts.Home.routes
     ) {
         composable(route = MainNavRouts.Home.routes) {
-            HomeScreen(navController = navController)
+            HomeScreen(
+                navController = navController,
+                navToHomeScreen = { MainNavRouts.Home },
+                navToNotesScreen = { MainNavRouts.NotesScreen },
+            )
         }
 
         composable(
@@ -36,6 +46,14 @@ fun NavGraphBuilder.mainNavGraph(
             })
         ) {
             NotesScreen(navController = navController)
+        }
+
+        composable(route = MainNavRouts.Home.routes) {
+            QuotesScreen(
+                navToHomeScreen = { MainNavRouts.Home },
+                navToNotesScreen = { MainNavRouts.NotesScreen },
+                uiState = UiState()
+            )
         }
 
 

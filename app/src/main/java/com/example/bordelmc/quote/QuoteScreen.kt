@@ -41,8 +41,7 @@ import com.example.compose.BordelMcTheme
 @Composable
 fun QuotesScreen(
     navToHomeScreen: () -> Unit,
-    navToProfileScreen: () -> Unit,
-    navToSearchScreen: () -> Unit,
+    navToNotesScreen: () -> Unit,
     uiState: UiState
 ) {
     AppScaffold(
@@ -50,8 +49,7 @@ fun QuotesScreen(
         bottomBar = {
             AppBottomBar(
                 navToHomeScreen = navToHomeScreen,
-                navToSearchScreen = navToSearchScreen,
-                navToProfileScreen = navToProfileScreen
+                navToNotesScreen = navToNotesScreen,
             )
         }
     ) {
@@ -98,8 +96,7 @@ fun QuotesScreenPreview() {
     BordelMcTheme {
         QuotesScreen(
             navToHomeScreen = {},
-            navToProfileScreen = {},
-            navToSearchScreen = {},
+            navToNotesScreen = {},
             uiState = UiState()
         )
     }

@@ -49,6 +49,7 @@ import androidx.navigation.NavHostController
 import com.example.bordelmc.data.model.note.NotesModel
 import com.example.bordelmc.data.repository.auth.Resources
 import com.example.bordelmc.designSystem.component.NotesItem
+import com.example.bordelmc.designSystem.component.bar.AppBottomBar
 import com.example.bordelmc.home.model.HomeUiState
 import com.example.bordelmc.navigation.AuthNavRoutes
 import com.example.justnote.navigation.MainNavRouts
@@ -57,7 +58,9 @@ import com.example.justnote.navigation.MainNavRouts
 @Composable
 fun HomeScreen(
     navController: NavHostController,
-    homeViewModel: HomeViewModel? = hiltViewModel()
+    homeViewModel: HomeViewModel? = hiltViewModel(),
+    navToHomeScreen: () -> Unit,
+    navToNotesScreen: () -> Unit
 ) {
     val homeUiState = homeViewModel?.homeUiState ?: HomeUiState()
 
@@ -103,6 +106,12 @@ fun HomeScreen(
                     )
                 )
             }
+        },
+        bottomBar = {
+            AppBottomBar(
+                navToHomeScreen = navToHomeScreen,
+                navToNotesScreen = navToNotesScreen
+            )
         },
 
         content = { paddingValues ->
