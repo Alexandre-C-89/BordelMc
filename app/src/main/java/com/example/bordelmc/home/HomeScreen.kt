@@ -45,22 +45,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import com.example.bordelmc.data.model.note.NotesModel
 import com.example.bordelmc.data.repository.auth.Resources
 import com.example.bordelmc.designSystem.component.NotesItem
 import com.example.bordelmc.designSystem.component.bar.AppBottomBar
 import com.example.bordelmc.home.model.HomeUiState
-import com.example.bordelmc.navigation.AuthNavRoutes
-import com.example.justnote.navigation.MainNavRouts
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    navController: NavHostController,
+    onBackClick: () -> Unit,
     homeViewModel: HomeViewModel? = hiltViewModel(),
     navToHomeScreen: () -> Unit,
-    navToNotesScreen: () -> Unit
+    navToNotesScreen: (String) -> Unit,
+    navToSplashScreen: () -> Unit
 ) {
     val homeUiState = homeViewModel?.homeUiState ?: HomeUiState()
 
@@ -74,9 +72,7 @@ fun HomeScreen(
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = {
-                navController.navigate(MainNavRouts.NotesScreen.passNoteId(""))
-            }) {
+            FloatingActionButton(onClick = { navToNotesScreen("") } ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "")
             }
         },
@@ -92,8 +88,8 @@ fun HomeScreen(
                     actions = {
                         IconButton(onClick = {
                             homeViewModel?.signOutUser()
-                            navController.popBackStack()
-                            navController.navigate(AuthNavRoutes.Splash.route)
+                            onBackClick()
+                            navToSplashScreen()
                         }) {
                             Icon(imageVector = Icons.Default.ExitToApp, contentDescription = "", tint = MaterialTheme.colorScheme.onPrimary)
                         }
@@ -110,7 +106,7 @@ fun HomeScreen(
         bottomBar = {
             AppBottomBar(
                 navToHomeScreen = navToHomeScreen,
-                navToNotesScreen = navToNotesScreen
+                navToNotesScreen = { navToNotesScreen("") }
             )
         },
 
@@ -163,9 +159,7 @@ fun HomeScreen(
                                         openDialog = true
                                         selectedNote = notes
                                     },
-                                    onClick = {
-                                        navController.navigate(MainNavRouts.NotesScreen.passNoteId(notes.documentId))
-                                    }
+                                    onClick = { navToNotesScreen(notes.documentId) }
                                 )
                             }
 
@@ -221,7 +215,7 @@ fun HomeScreen(
     LaunchedEffect(key1 = Unit) {
         Log.i("TAG", "HomeScreen: ${homeViewModel?.userExists == false}")
         if (homeViewModel?.userExists == false) {
-            navController.navigate(AuthNavRoutes.Splash.route)
+            navToSplashScreen()
         } else {
             homeViewModel?.loadNotesData()
         }

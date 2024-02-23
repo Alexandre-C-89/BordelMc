@@ -1,4 +1,4 @@
-package com.example.justnote.navigation
+package com.example.bordelmc.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -10,9 +10,12 @@ import com.example.bordelmc.home.HomeScreen
 import com.example.bordelmc.note_screen.NotesScreen
 import com.example.bordelmc.quote.QuotesScreen
 import com.example.bordelmc.quote.model.UiState
+import com.example.justnote.navigation.Graph
 
 sealed class MainNavRouts(val routes: String) {
+
     object Home : MainNavRouts("Home")
+
     object NotesScreen : MainNavRouts("Notes?{noteId}") {
         fun passNoteId(noteId: String): String {
             return "Notes?$noteId"
@@ -22,6 +25,7 @@ sealed class MainNavRouts(val routes: String) {
     object Quotes : MainNavRouts("Quotes")
 
     object Profile : MainNavRouts("Profile")
+
 }
 
 fun NavGraphBuilder.mainNavGraph(
@@ -33,9 +37,14 @@ fun NavGraphBuilder.mainNavGraph(
     ) {
         composable(route = MainNavRouts.Home.routes) {
             HomeScreen(
-                navController = navController,
+                onBackClick = { navController.popBackStack() },
                 navToHomeScreen = { MainNavRouts.Home },
-                navToNotesScreen = { MainNavRouts.NotesScreen },
+                navToNotesScreen = { navController.navigate(
+                    MainNavRouts.NotesScreen.passNoteId(
+                        noteId = it
+                    )
+                ) },
+                navToSplashScreen = { navController.navigate(AuthNavRoutes.Splash.route) },
             )
         }
 

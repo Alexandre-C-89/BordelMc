@@ -40,7 +40,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.bordelmc.login.LoginViewModel
 import com.example.bordelmc.navigation.AuthNavRoutes
 import com.example.compose.BordelMcTheme
-import com.example.justnote.navigation.MainNavRouts
+import com.example.bordelmc.navigation.MainNavRouts
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
