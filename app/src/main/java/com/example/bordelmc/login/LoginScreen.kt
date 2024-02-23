@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -40,6 +41,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.bordelmc.login.model.LoginUiState
 import com.example.bordelmc.navigation.AuthNavRoutes
+import com.example.compose.Blue30
 import com.example.compose.BordelMcTheme
 import com.example.justnote.navigation.Graph
 
@@ -65,7 +67,7 @@ fun LoginScreen(
         Text(
             text = AnnotatedString("Login"),
             style = MaterialTheme.typography.headlineMedium,
-            color = MaterialTheme.colorScheme.primary,
+            color = Blue30,
             fontWeight = FontWeight.Black
         )
         Spacer(modifier = Modifier.size(40.dp))
@@ -127,7 +129,9 @@ fun LoginScreen(
         Spacer(modifier = Modifier.size(20.dp))
 
         Button(
-            onClick = { loginViewModel?.signInUser(context) }) {
+            onClick = { loginViewModel?.signInUser(context) },
+            colors = ButtonDefaults.buttonColors(Blue30)
+        ) {
             Text(
                 text = "Sign In",
                 modifier = Modifier.padding(horizontal = 40.dp, vertical = 6.dp)

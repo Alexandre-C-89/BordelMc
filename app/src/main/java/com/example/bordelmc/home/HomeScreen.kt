@@ -156,7 +156,8 @@ fun HomeScreen(
                                     },
                                     onClick = {
                                         navController.navigate(MainNavRouts.NotesScreen.passNoteId(notes.documentId))
-                                    })
+                                    }
+                                )
                             }
 
                         }
